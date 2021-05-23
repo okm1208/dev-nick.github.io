@@ -3,7 +3,7 @@ layout: post
 title:  "HTTPS (TLS) 이해하기"
 date:   2021-05-23 14:00:00 +0900
 categories: security
-tag: [http, https, tls, ssl, ca, 인증서] 
+tags: [http, https, tls, ssl, ca, 인증서] 
 ---
 
 HTTPS에 대한 이해를 돕고자 작성

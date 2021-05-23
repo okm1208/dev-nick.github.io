@@ -3,7 +3,7 @@ layout: post
 title:  "Basic Shell Command"
 date:   2021-05-23 17:00:00 +0900
 categories: shell
-tag: [linux, unix, shell, command, 리눅스, 명령어] 
+tags: [linux, unix, shell, command, 리눅스, 명령어] 
 ---
 
 서버를 관리하면서 자주 사용 하는 shell 명령어 들을 정리해 보자.
@@ -65,7 +65,7 @@ $ tar xvf text.tar -C  target_folder
 ```bash
 $ tar tf text.tar
 ```
-
+<br>
 
 ## 2. zip / unzip 
 -----  
@@ -73,13 +73,14 @@ $ tar tf text.tar
 ### 2.1. zip 
 - 파일을 압축 할 때 사용
 
-### 2.1.1 옵션들
+#### 2.1.1 옵션들
         -r  : 하위 디렉토리를 포함하는 압축 옵션 
         -x  : 특정 폴더 및 파일들을 제외 
         -1  : 빠른 압축 ( 압축률 저하 ) 
         -9  : 높은 압축률 ( 속도 저하 ) 
         -e  : zip 파일에 압호 설정
 
+#### 2.1.2 사용 예제
 - 파일 압축
 
  ```bash
@@ -94,10 +95,11 @@ $ tar tf text.tar
 ### 2.2. unzip 
 - zip 파일의 압축을 해제 할 때 사용 
 
-### 2.2.1 옵션들
+#### 2.2.1 옵션들
         -l  : 압축을 해제 하지 않고 목록만 출력 
         -d  : 특정 폴더에 해제 
-        
+
+#### 2.2.2 사용 예제
 - 압축 해제 
 
  ```bash
@@ -118,4 +120,116 @@ $ tar tf text.tar
  ```bash
  $ upzip -l text.zip
  ```
+<br>
 
+## 3. find 
+-----  
+- 파일 및 폴더를 검색 할때 사용하는 명령어
+
+### 3.1. 표현식 (expression)
+        -name       : 지정된 문자열 패턴에 해당 하는 파일 검색
+        -empty      : 빈 디렉토리 또는 크기가 0인 파일 검색
+        -delete     : 검색된 파일 또는 디렉토리 삭제 
+        -exec       : 검색된 파일에 대해 지정된 명령 실행
+        -type       : 지정된 파일 타입에 해당 하는 파일 검색 ( d : 디렉터리, f : 파일 )
+        -mindepth   : 검색을 시작할 하위 디렉토리 최소 깊이
+        -maxdepth   : 검색할 하위 디렉토리의 최대 갚이
+        -atime      : 파일 점근(access) 시각을 기준으로 파일 검색 
+        -ctime      : 파일 내용 및 속성 변경(change) 시각을 기준으로 파일 검색 
+        -mtime      : 파일의 데이터 수정(modify) 시각을 기준으로 파일 검색 
+
+
+### 3.2. 사용 예제
+
+- 특정 파일 확장자 검색
+
+ ```bash
+ $ find . -name "*.yml"  # 현재 폴더 기준 하위 폴더 모두 
+ $ find . -name -maxdepth 1 "*.yml" # 현재 폴더 기준 1 depth 까지 
+ ```        
+- 파일 검색 후 삭제 ( -delete 표현식 사용 )
+ 
+ ```bash
+ $ find . -name "*.yml" -delete 
+ ```      
+- 파일 검색 후 삭제 ( -exec 표현식 사용 )
+
+ ```bash
+ $ find . -name "*.yml" -exec rm {} + 
+ ```      
+- 파일 검색 개수 
+
+ ```bash
+ $ find . -name "*.yml" | wc -l
+ ```      
+- 파일 검색 후 수정일 변경 
+
+ ```bash
+ $ find . -name "*.yml" -exec touch -d '7 days ago' {} +  # 7일전으로 수정 
+ ```      
+<br>
+
+## 4. head/tail 
+-----  
+- 파일의 앞 부분 및 뒷 부분을 읽는다
+
+### 4.1. 옵션들
+        -c  --bytes=SIZE    : 앞(뒤)에서 부터 N Kbyte 만큼의 문자를 출력 
+        -n  --lines=N       : 앞(뒤)에서 부터 N 개의 라인을 출력한다.
+        -q  --quiet         : 파일의 헤더 및 파일이름을 출력하지 않는다.
+        -v  --verbose       : 파일의 헤더 및 파일이름을 출력한다.
+        -f  --follow        :
+
+### 4.2. 사용 예제
+
+- 특정 파일의 정해진 라인수 만큼 출력 
+
+ ```bash
+ $ head -n 10 test.txt  # n 옵션 생략 가능
+ $ tail -n 10 test.txt  # n 옵션 생략 가능 
+ ```     
+- 특정 파일의 정해진 라인수 만큼 계속 감시 하여 내용이 추가 될때 마다 출력
+
+ ```bash
+ $ tail -n 10 -f test.txt 
+ ```     
+
+<br>
+
+## 5. cat 
+-----  
+
+
+<br>
+
+
+## 6. split 
+-----  
+
+<br>
+
+
+## 7. touch 
+-----  
+
+<br>
+
+
+## 8. ps 
+-----  
+
+<br>
+
+
+## 9. ls 
+-----  
+
+<br>
+
+
+## 10. nohup 
+-----  
+
+
+## 11. kill / pkill 
+-----  
