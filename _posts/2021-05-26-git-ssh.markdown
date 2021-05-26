@@ -74,8 +74,29 @@ git 공개키 인증하기
 
 ![공개키 등록](/assets/img/git/git_ssh_keys_regist_02.png)
 
+#### ssh config 설정 
 
+- host, user ,identityFile 설정 
 
+ ```bash
+ $ (base) MacBook-Pro-2:.ssh okm12$ cat config 
+    Host github.com-music-flo
+      HostName github.com
+      User git
+      IdentityFile ~/.ssh/id_rsa
+    
+    # Secondary account
+    Host github.com-okm1208
+      HostName github.com
+      User git
+      IdentityFile ~/.ssh/okm_rsa
+ ``` 
 
-
-
+- 위와 같이 github 계정을 두개 설정 해야 하는 경우 Host 값을 다르게 설정한다.
+    
+    - 개인 github URL  
+![개인 git](/assets/img/git/git_ssh_keys_regist_03.png)
+    
+    - 회사 github URL
+![회사 git](/assets/img/git/git_ssh_keys_regist_04.png)
+  
