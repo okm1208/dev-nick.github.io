@@ -1,0 +1,81 @@
+---
+layout: post
+title:  "[git] ssh 공개키 생성 및 등록"
+date:   2021-05-26 09:00:00 +0900
+categories: git
+tags: [git, ssh, 공개키, 인증] 
+---
+
+git 공개키 인증하기 
+
+[공개키란?](https://opentutorials.org/module/432/3742)
+
+### 공개키 만들기
+
+#### 공개키 존재 확인
+- 먼저 로컬 PC에 공개키가 있는지 확인 한다.
+보통 로컬 PC의 ~/.ssh 폴더 안에 공개키 및 비밀키가 존재 한다.
+
+ ```bash
+ $  (base) MacBook-Pro-2:.ssh okm12$ ls -al
+    drwx------    9 okm12  staff    288  5 26 09:51 .
+    drwxr-xr-x+ 190 okm12  staff   6080  5 26 09:51 ..
+    -rw-------    1 okm12  staff   2610  8 19  2020 id_rsa
+    -rw-r--r--    1 okm12  staff    577  8 19  2020 id_rsa.pub
+    -rw-------    1 okm12  staff   2602  9 27  2020 okm_rsa
+    -rw-r--r--    1 okm12  staff    571  9 27  2020 okm_rsa.pub
+ ``` 
+
+#### 공개키 생성
+- 만약 공개키가 존재 하지 않는다면 아래와 같이 ssh-keygen 툴을 이용하여 공개키를 생성 한다.
+
+ ```bash
+ $ (base) MacBook-Pro-2:.ssh okm12$ ssh-keygen
+    Generating public/private rsa key pair.
+    Enter file in which to save the key (/Users/okm12/.ssh/id_rsa): test_rsa
+    Enter passphrase (empty for no passphrase): 
+    Enter same passphrase again: 
+    Your identification has been saved in test_rsa.
+    Your public key has been saved in test_rsa.pub.
+    The key fingerprint is:
+    SHA256:uEzrWPD9uNA6TbEuse3/X2gMYje2Hn7H/LPfoR7tuVE okm12@MacBook-Pro-2.local
+    The key's randomart image is:
+    +---[RSA 3072]----+
+    |                 |
+    |                 |
+    |                 |
+    |       ..        |
+    |    . o Soo =   E|
+    |     =.=o. + =...|
+    |      BBo   o.+*.|
+    |     ++o+o o o=oO|
+    |    . o++oo.==.*X|
+    +----[SHA256]-----+
+ ``` 
+
+- 공개 키 생성 확인
+
+ ```bash
+ $ (base) MacBook-Pro-2:.ssh okm12$ cat test_rsa.pub 
+    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCdgFQhLQ+AoPsMZryvIyf5zw/1FcX3PFWp5LiThxI
+    ...............
+    ...............
+    ...............
+    BnTxJI9sNGXTU6bvlQre1hQ9mohggU4XVdPYW7WFN0UQuce2Q3s= okm12@MacBook-Pro-2.local
+ ``` 
+
+#### 공개키 등록
+
+- github -> Account Setting -> SSH and GPG keys -> SSH keys -> New SSH key
+
+![공개키 등록 메뉴](/assets/img/git/git_ssh_keys_regist_01.png)
+ 
+- 생성 했던 공개키 (*.pub) 를 등록 한다.
+
+![공개키 등록](/assets/img/git/git_ssh_keys_regist_02.png)
+
+
+
+
+
+
