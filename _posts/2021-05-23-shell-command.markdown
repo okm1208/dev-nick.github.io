@@ -241,6 +241,8 @@ $ tar tf text.tar
  ```bash
  $ split -l 100 test.txt # 분리하게 되면 해당 파일명은 임의의 앏파벳으로 구성 된다. 
  $ split -l 100 text.txt split_ # 접두사 지정 
+ $ aplit -l 100 --additional-suffix=.csv text.txt prefix_ # 분리될 파일 prefix , suffix 적용 
+
  ```
 <br>
 
